@@ -14,13 +14,8 @@ class ScriptedPipelineTest {
 
     private static final String SCRIPT_WITH_NON_STORED_PASSWORD =
             """
-                properties([
-                    parameters([
-                         [$class: 'PasswordParameterDefinition', name: 'MY_PASSWORD', description: 'Test password parameter']
-                    ])
-                ])
-
                 node {
+                    properties([parameters([nonStoredPassword(name: 'MY_PASSWORD', description: 'Test password parameter')])])
                     stage('Test') {
                         echo 'Testing nonStoredPassword parameter in a scripted pipeline'
                     }
